@@ -40,8 +40,43 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    func showAlertFunction(title: String, message: String){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController  , animated: true, completion: nil)
+        
+    }
 
-    @IBAction func punchButtonPressed(_ sender: UIButton) {
+    @IBAction func photoOrCamaraPressed(_ sender: UIButton) {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (_) in
+            print("You clicked photo library")
+        }
+        
+        let camaraAction = UIAlertAction(title: "Camara", style: .default) { (_) in
+            print("You clicked Camara")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            print("You clicked cancel")
+        }
+        
+        alertController.addAction(photoLibraryAction)
+        alertController.addAction(camaraAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         
         let originalFrame = imageView.frame
         let shrinkSizeX: CGFloat = 20.0
@@ -62,10 +97,9 @@ class ViewController: UIViewController {
                         self.imageView.frame = originalFrame
         },
                        completion: nil)
+
         
     }
-    
-    
     
     
 
